@@ -94,7 +94,7 @@
         </div>
     </div>
     <!-- Content Row -->
-
+    {{-- @dd($productsDashboard) --}}
     <div class="row">
 
         <!-- Area Chart -->
@@ -103,60 +103,66 @@
                 <!-- Card Header - Dropdown -->
                 <div class="flex-row py-3 card-header d-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                    @if(session()->get("customer_id"))
-                    <div>
-                        <a href="" class="text-success m-2"><i class="fa fa-print" aria-hidden="true"></i></a>
-                        <a href="" class="text-danger"><i class="fas fa-file-pdf"></i></a>
-                    </div>
+                    @if (session()->get('customer_id'))
+                       @isset($productsDashboard[0])
+                        <div>
+                            <a href="" class="btn btn-success text-white m-2">Imprimer<i class="fa fa-print p-2"
+                                    aria-hidden="true"></i></a>
+                            <a type="button" wire:click.prevent="confirm({{ $productsDashboard[0]->id }})" class="btn btn-danger text-white">Confirmer<i class="fas fa-file-pdf p-2"></i></a>
+                        </div>
+                    @endisset
                     @endif
                     <div class="dropdown no-arrow">
-                        <a  href="#" role="button" data-toggle="modal" data-target="#product" >
-                            <button class="btn btn-primary text-white"><i class="fa fa-plus" aria-hidden="true"></i> ajouter un produit</button>
+                        <a href="#" role="button" data-toggle="modal" data-target="#product">
+                            <button class="btn btn-primary text-white"><i class="fa fa-plus" aria-hidden="true"></i>
+                                ajouter un produit</button>
                         </a>
 
                     </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>N.</th>
-                            <th>nom</th>
-                            <th>couleur</th>
-                            <th>actions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @empty($productsDashboard)
-                            Aucunne donnee
-                        @else
-
-                            @foreach ($productsDashboard["products"] as $key => $product)
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td></td>
-
-                                    <td>-n
-                                        <a href=""></a>
-
-                                        <butto  type="submit" wire:click ="" class="btn btn-danger p1 text-white" >X</butto>
-                                    </td>
+                                    <th>N.</th>
+                                    <th>nom</th>
+                                    <th>couleur</th>
+                                    <th>actions</th>
                                 </tr>
-                            @endforeach
+                            </thead>
 
-                        @endempty
-                    </tbody>
-                </table>
-            </div>
+                            <tbody>
+                                @empty($productsDashboard)
+                                    Aucunne donnee
+                                @else
+                                    @isset($productsDashboard[0]['products'])
+                                        @foreach ($productsDashboard[0]['products'] as $key => $product)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $product->name }}</td>
+                                                <td>{{ $product->description }}</td>
+
+                                                <td>-n
+                                                    <a href=""></a>
+
+                                                    <button type="submit" wire:click =""
+                                                        class="btn btn-danger p1 text-white">X</button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endisset
+
+                                @endempty
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
 
     </div>
-@livewire('create-order-list')
+    <livewire:create-order-list @saved="$refresh">
 </div>

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\On;
 use App\Models\Customer;
 use App\Services\OrderBasketService;
 
@@ -10,6 +11,9 @@ class Search extends Component
 {
     public $records;
     public string $roomSearch;
+
+    // protected $listeners = ["confirmed" => 'render'];
+    #[On('confirmed')]
     public function render()
     {
         $this->records = Customer::all();
@@ -26,5 +30,6 @@ class Search extends Component
 
     public function order(OrderBasketService $orderBasketService, int $customerId) {
         $orderBasketService->initBasket($customerId);
+        $this->dispatch('Initialized');
     }
 }

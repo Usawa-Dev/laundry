@@ -12,6 +12,7 @@ class CreateOrderList extends Component
     public ?string $description;
     public int $orderId;
     public $products;
+    protected $listeners = ["Initialized" => 'render'];
 
     public function render(ProductService $productService)
     {
@@ -21,9 +22,11 @@ class CreateOrderList extends Component
 
     public function store(ProductService $productService)
     {
-        
+
         $productService->storeProduct($this->name, $this->description);
+
            flash()->addSuccess('Article ajoute avec succes');
+        $this->dispatch('Productstored');
     }
 
     public function delete(int $productId)
