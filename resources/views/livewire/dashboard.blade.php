@@ -1,11 +1,12 @@
 <div>
     @php
         use Darryldecode\Cart\Cart;
+        use App\Services\CountableDataService;
     @endphp
     <div class="mb-4 d-sm-flex align-items-center justify-content-between">
         <h1 class="mb-0 text-gray-800 h3">Dashboard</h1>
         <a href="#" class="shadow-sm d-none d-sm-inline-block btn btn-sm btn-primary"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                class="fas fa-download fa-sm text-white-50"></i> </a>
     </div>
 
     <!-- Content Row -->
@@ -18,8 +19,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-primary text-uppercase">
-                                Earnings (Monthly)</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">$40,000</div>
+                                Commandes en cours</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countUnconfirmedOrders() }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-calendar fa-2x"></i>
@@ -36,8 +37,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
-                                Earnings (Annual)</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">$215,000</div>
+                                Commandes Livres</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countConfirmedOrders() }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-dollar-sign fa-2x"></i>
@@ -53,11 +54,11 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
-                            <div class="mb-1 text-xs font-weight-bold text-info text-uppercase">Tasks
+                            <div class="mb-1 text-xs font-weight-bold text-info text-uppercase">Nombre d'utilisateurs
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="mb-0 mr-3 text-gray-800 h5 font-weight-bold">50%</div>
+                                    <div class="mb-0 mr-3 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countUser() }}</div>
                                 </div>
                                 <div class="col">
                                     <div class="mr-2 progress progress-sm">
@@ -82,8 +83,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-warning text-uppercase">
-                                Pending Requests</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">18</div>
+                                Nombres de clients</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countClients() }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-comments fa-2x"></i>
@@ -164,5 +165,90 @@
 
 
     </div>
-    <livewire:create-order-list @saved="$refresh">
+    {{-- <livewire:create-order-list @saved="$refresh"> --}}
+        {{-- modal create product --}}
+            <div wire:ignore.self class="modal fade" id="product" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un article?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for=""></label>
+                            <input type="text" wire:model="name" class="form-control" name="" id=""
+                                aria-describedby="helpId" value="">
+                            <small id="helpId" class="form-text text-muted">nom de l'article</small>
+                        </div>
+                        <div class="form-group">
+                            <label for=""></label>
+                            <input type="text" wire:model="description" class="form-control" name="" id=""
+                                aria-describedby="helpId" value="">
+                            <small id="helpId" class="form-text text-muted">couleur</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                    <button class="btn btn-primary" type="submit" wire:click.prevent="store()" >Creer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end modal --}}
+
+    {{-- modal search --}}
+        <div wire:ignore.self class="modal fade" id="customer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un role?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>nom</th>
+                                    <th>cambre</th>
+                                    <th>actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @empty($records)
+                                    Aucunne donnee
+                                @else
+                                    @foreach ($records as $key => $record)
+                                        <tr>
+
+                                            <td>{{ $record->name }}</td>
+                                            <td>{{ $record->room_name }}</td>
+
+                                            <td>
+                                                <button class="btn btn-success p1 text-white"
+                                                    wire:click ="orderInit({{ $record->id }})">selectioner</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                @endempty
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

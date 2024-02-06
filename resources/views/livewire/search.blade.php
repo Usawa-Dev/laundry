@@ -28,18 +28,16 @@
                                     Aucunne donnee
                                 @else
                                     @foreach ($records as $key => $record)
+                                        <tr>
 
-                                            <tr>
+                                            <td>{{ $record->name }}</td>
+                                            <td>{{ $record->room_name }}</td>
 
-                                                <td>{{ $record->name }}</td>
-                                                <td>{{ $record->room_name }}</td>
-
-                                                <td>
-                                                    <button class="btn btn-success p1 text-white" wire:click ="order({{ $record->id }})"
-                                                        >selectioner</button>
-                                                </td>
-                                            </tr>
-
+                                            <td>
+                                                <button class="btn btn-success p1 text-white"
+                                                    wire:click ="order({{ $record->id }})">selectioner</button>
+                                            </td>
+                                        </tr>
                                     @endforeach
 
                                 @endempty
