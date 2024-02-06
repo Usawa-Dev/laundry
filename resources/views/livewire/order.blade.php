@@ -2,8 +2,8 @@
     <!-- Page Heading -->
     <div class="mb-4 d-sm-flex align-items-center justify-content-between">
         <h1 class="mb-0 text-gray-800 h3">liste des commandes</h1>
-        <a data-toggle="modal" data-target="#order" class="shadow-sm d-none d-sm-inline-block btn btn-sm btn-primary"><i
-                class="fas fa-download fa-sm text-white-50"></i> Creer une commande</a>
+        {{-- <a data-toggle="modal" data-target="#order" class="shadow-sm d-none d-sm-inline-block btn btn-sm btn-primary"><i
+                class="fas fa-download fa-sm text-white-50"></i> Creer une commande</a> --}}
     </div>
 
 
@@ -20,7 +20,6 @@
                             <th>status</th>
                             <th>client</th>
                             <th>chambre</th>
-                            <th>prix</th>
                             <th>Qty produit</th>
                             <th>Actions</th>
                         </tr>
@@ -41,9 +40,8 @@
                                             <span class="text-success p-1"><i class="fa fa-circle"></i></span>
                                         </td>
                                     @endif
-                                    <td>{{ $item->client_name }}</td>
-                                    <td>{{ $item->room_name }}</td>
-                                    <td>{{ $item->price }}</td>
+                                    <td>{{ $item->customer->name }}</td>
+                                    <td>{{ $item->customer->room_name }}</td>
 
                                     <td>{{ $item->products_count }}</td>
                                     <td>

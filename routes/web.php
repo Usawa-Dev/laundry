@@ -37,7 +37,7 @@ Route::middleware("auth")->group(function () {
 
     Route::get("/setPermissiom/{id}", [UserController::class, "givePermission"])->name("user.setPermission");
     Route::get("/unsetPermissiom/{id}", [UserController::class, "removePermission"])->name("user.unsetPermission");
-
+    Route::post("/delete", [UserController::class, "delete"])->name("user.delete");
     Route::get("/customers", [CustomerController::class, "create"])->name("customer.create");
 
 });

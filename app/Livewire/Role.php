@@ -17,9 +17,15 @@ class Role extends Component
         return view('livewire.role');
     }
 
-    public function store(RoleService $roleService){
+    public function store(RoleService $roleService)
+    {
         $roleService->store($this->name);
-
+        $this->restore();
         flash()->addSuccess('role ajoute avec success');
+    }
+
+    private function restore()
+    {
+        $this->name = "";
     }
 }

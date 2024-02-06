@@ -18,7 +18,7 @@ class User extends Component
 
     public $user;
     public string $phone;
-    public int $role_id;
+    public  $role_id;
     public $roles;
 
     public function render(UserService $userService, RoleService $roleService)
@@ -28,15 +28,21 @@ class User extends Component
         return view('livewire.user');
     }
 
-    public function store(UserService $userService, RoleService $roleService){
+    public function store(UserService $userService, RoleService $roleService)
+    {
 
         $this->user = $userService->store($this->name, $this->email, $this->phone, $this->role_id);
 
         $roleService->userRole($this->user->id, $this->role_id);
-
-           flash()->addSuccess('utilisateur ajoute avec success');
+        $this->restore();
+        flash()->addSuccess('utilisateur ajoute avec success');
     }
 
-
-
+    private function restore(): void
+    {
+        $this->name = "";
+        $this->email = "";
+        $this->phone = "";
+        $this->role_id = null;
+    }
 }

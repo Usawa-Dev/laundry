@@ -30,4 +30,9 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete(Request $request){
+        $this->userService->delete((int) $request->user_id);
+        return redirect(route("admin.users"));
+    }
 }

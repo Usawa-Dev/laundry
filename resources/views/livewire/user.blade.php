@@ -42,10 +42,28 @@
                                     <td>{{ $user->phone }}</td>
 
                                     <td>
-                                        <a href=""></a>
-                                        <a href="{{ route("user.setPermission", ["id" => $user->id])}}" class="btn btn-sm  btn-primary text-white p-1 rounded" title="permettre"><i class="fa fa-plus-circle"></i></a>
+                                        <a href="{{ route('user.setPermission', ['id' => $user->id]) }}"
+                                            class="btn btn-primary btn-sm " title="permettre"> <i class="fa fa-plus"
+                                                aria-hidden="true"></i></a>
+                                        <button type="button" class="btn btn-success btn-sm "
+                                            title="confirmer la commande"> <i class="fa fa-check"
+                                                aria-hidden="true"></i></button>
+                                        <a href="{{ route('user.unsetPermission', ['id' => $user->id]) }}"
+                                            class="btn btn-warning btn-sm " title="enlever la permission"> <i
+                                                class="fa fa-edit" aria-hidden="true"></i></a>
+                                        <a href="" class="btn btn-primary btn-sm " title="voir les details"> <i
+                                                class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                         <a href="{{ route("user.unsetPermission", ["id" => $user->id])}}" class="btn btn-sm  btn-danger text-white p-1 " title="permettre"><i class="fa fa-close"></i>x</a>
+
+
+
+                                        <form action="{{ route('user.delete') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                            <button type="submit" class="btn btn-danger btn-sm "
+                                                title="supprimer l'utilisateur"> <i class="fa fa-window-close"
+                                                    aria-hidden="true"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -99,12 +117,12 @@
                         </div>
 
                         <div class="form-group">
-                          <label for=""></label>
-                          <select class="form-control" name="" id="">
-                            <option></option>
-                            <option></option>
-                            <option></option>
-                          </select>
+                            <label for=""></label>
+                            <select class="form-control" name="" id="">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -116,3 +134,19 @@
         </div>
     </div>
 </div>
+{{-- <a href=""
+                                            class="btn btn-primary btn-sm " title="ajouter des produits"> <i
+                                                class="fa fa-plus" aria-hidden="true"></i></a>
+                                        <button type="button"
+                                            class="btn btn-success btn-sm " title="confirmer la commande"> <i
+                                                class="fa fa-check" aria-hidden="true"></i></button>
+                                        <a href=""
+                                            class="btn btn-warning btn-sm " title="modifier la commande"> <i
+                                                class="fa fa-edit" aria-hidden="true"></i></a>
+                                        <a href=""
+                                            class="btn btn-primary btn-sm " title="voir les details"> <i
+                                                class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                        <a href=""
+                                            class="btn btn-danger btn-sm " title="supprimer la commande"> <i
+                                                class="fa fa-window-close" aria-hidden="true"></i></a> --}}

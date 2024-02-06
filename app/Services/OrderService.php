@@ -14,7 +14,7 @@ class OrderService
 
     public function getAll(): Collection
     {
-        return Order::latest()->withCount("products")->get();
+        return Order::latest()->with("customer")->withCount("products")->get();
     }
 
     public function ordersByUser(): Collection
