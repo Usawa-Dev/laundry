@@ -48,15 +48,15 @@
                                         <a href="{{ route('invoice.create', ['id' => $item->id]) }}"
                                             class="btn btn-primary btn-sm " title="imprimer"> <i
                                                 class="fa fa-print" aria-hidden="true"></i></a>
-                                        <button type="button" wire:click.prevent="confirm({{ $item->id }})"
+                                        <a type="" href="{{ route('admin.order.confirm', ['id' => $item->id]) }}"
                                             class="btn btn-success btn-sm " title="confirmer la commande"> <i
-                                                class="fa fa-check" aria-hidden="true"></i></button>
-                                        {{-- <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
-                                            class="btn btn-warning btn-sm " title="modifier la commande"> <i
+                                                class="fa fa-check" aria-hidden="true"></i></a>
+                                         <a href="{{ route('admin.order.deliver', ['id' => $item->id]) }}"
+                                            class="btn btn-warning btn-sm " title="livrer la commande"> <i
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
-                                        <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
+                                        {{-- <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
                                             class="btn btn-primary btn-sm " title="voir les details"> <i
-                                                class="fa fa-eye" aria-hidden="true"></i></a> --}}
+                                                class="fa fa-eye" aria-hidden="true"></i></a> --}} 
 
                                         <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
                                             class="btn btn-danger btn-sm " title="supprimer la commande"> <i

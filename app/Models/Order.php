@@ -13,7 +13,8 @@ protected $fillable = [
     'code',
     'user_id',
     'status',
-    'customer_id'
+    'customer_id',
+    'confirmed'
 ];
 
 

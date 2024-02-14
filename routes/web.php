@@ -50,7 +50,8 @@ Route::get("/invoice/{id}",[InvoiceController::class, "create"])->name("invoice.
     Route::post("/order",[OrderController::class,"store"])->name("admin.order.store");
     Route::put("/orderUpdate",  [OrderController::class, "update"])->name("admin.order.update");
     Route::get("/order/{id}",[OrderController::class,"show"])->name("admin.order.show");
-
+    Route::get("/orderDeliver/{id}", [OrderController::class, "deliver"])->name("admin.order.deliver");
+    Route::get("/orderConfirm/{id}", [OrderController::class, "confirm"])->name("admin.order.confirm");
 
     Route::get("/product/{id}", [ProductController::class, "create"])->name("admin.product.create");
 });
