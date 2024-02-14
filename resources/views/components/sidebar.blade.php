@@ -2,8 +2,9 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon ">
+                    {{-- <i class="fas fa-laugh-wink"></i> --}}
+                    <img src="{{ asset("téléchargement.png") }}" alt="" srcset="" width="60px" class=" rounded-full">
                 </div>
                 <div class="mx-3 sidebar-brand-text"> {{ Auth::user()->name }} <sup>2</sup></div>
             </a>

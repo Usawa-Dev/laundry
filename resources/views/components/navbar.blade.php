@@ -6,7 +6,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    @if(is_null(session()->get("customer_id") ))
+                    {{-- @if(is_null(session()->get("customer_id") )) --}}
                                             <form
                         class="my-2 mr-auto d-none d-sm-inline-block form-inline ml-md-3 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </form>
-                    @endif
+                    {{-- @endif --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="ml-auto navbar-nav">

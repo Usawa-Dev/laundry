@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProductController;
+Use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoleController;
-Use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::middleware("auth")->group(function () {
 });
 
 Route::middleware("auth")->group(function() {
-
+Route::get("/invoice/{id}",[InvoiceController::class, "create"])->name("invoice.create");
     Route::get("/orders",[OrderController::class,"index"])->name("admin.order");
     Route::get("/order",[OrderController::class,"create"])->name("admin.order.create");
     Route::post("/order",[OrderController::class,"store"])->name("admin.order.store");

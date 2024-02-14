@@ -42,4 +42,8 @@ class OrderService
 
         return '#' . date('Y-m-d') . rand(1, 1000);
     }
+
+    public function invoice(int $orderId){
+        return Order::where("id", $orderId)->with("products")->with("customer")->first();
+    }
 }

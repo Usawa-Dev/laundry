@@ -103,11 +103,11 @@
             <div class="mb-4 shadow card">
                 <!-- Card Header - Dropdown -->
                 <div class="flex-row py-3 card-header d-flex align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                    <h6 class="m-0 font-weight-bold text-primary"></h6>
                     @if (session()->get('customer_id'))
                        @isset($productsDashboard[0])
                         <div>
-                            <a href="" class="btn btn-success text-white m-2">Imprimer<i class="fa fa-print p-2"
+                            <a href="{{ route('invoice.create', ['id' => $productsDashboard[0]["id"]]) }}" class="btn btn-success text-white m-2">Imprimer<i class="fa fa-print p-2"
                                     aria-hidden="true"></i></a>
                             <a type="button" wire:click.prevent="confirm({{ $productsDashboard[0]->id }})" class="btn btn-danger text-white">Confirmer<i class="fas fa-file-pdf p-2"></i></a>
                         </div>
@@ -214,14 +214,18 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
+                    <div class="mt-4 mb-4">
+                        <input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="rechercher une chambre..">
+                    </div>
                     <div class="table-responsive">
 
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>nom</th>
-                                    <th>cambre</th>
+                                    <th>chambre</th>
                                     <th>actions</th>
                                 </tr>
                             </thead>

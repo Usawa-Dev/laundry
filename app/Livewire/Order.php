@@ -25,7 +25,7 @@ class Order extends Component
     public function render(OrderService $orderService)
     {
 
-        $this->orders = (Auth::user()->role_user == "admin") ? $orderService->getAll() : $orderService->ordersByUser() ;
+        $this->orders = (Auth::user()->role_user == "admin") ? $orderService->getAll() : $orderService->ordersByUser();
         return view('livewire.order');
     }
 
@@ -34,17 +34,27 @@ class Order extends Component
     public function store(OrderService $orderService)
     {
 
-        $orderService->store( $this->client_name, $this->room_name, $this->phone);
+        $orderService->store($this->client_name, $this->room_name, $this->phone);
 
-         flash()->addSuccess('commande creee avec succes');
-
-
-
-
+        flash()->addSuccess('commande creee avec succes');
     }
 
-    public function openConfirmModal(int $orderId){
+    public function openConfirmModal(int $orderId)
+    {
         dd($orderId);
         $this->orderId = $orderId;
+    }
+
+
+    public function confirm(int $orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        $order->update([
+            "status" => 1
+        ]);
+
+        session()->forget("customer_id");
+
+        $this->dispatch('confirmed');
     }
 }

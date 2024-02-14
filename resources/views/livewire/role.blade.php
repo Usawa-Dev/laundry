@@ -2,10 +2,10 @@
 
     <!-- Page Heading -->
     <div class="mb-4 d-sm-flex align-items-center justify-content-between">
-        <h1 class="mb-0 text-gray-800 h3">liste des commandes</h1>
+        <h1 class="mb-0 text-gray-800 h3">liste des roles</h1>
         <a href="#"  data-toggle="modal" data-target="#order"
             class="shadow-sm d-none d-sm-inline-block btn btn-sm btn-primary"><i
-                class="fas fa-plus fa-sm text-white-50"></i> ajouter un article</a>
+                class="fas fa-plus fa-sm text-white-50"></i> ajouter un role</a>
     </div>
 
     <!-- DataTales Example -->
@@ -20,7 +20,6 @@
                         <tr>
                             <th>N.</th>
                             <th>nom</th>
-                            <th>couleur</th>
                             <th>actions</th>
                         </tr>
                     </thead>
@@ -34,7 +33,6 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $role->name }}</td>
-                                    <td></td>
 
                                     <td>
                                         <a href=""></a>

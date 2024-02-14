@@ -33,11 +33,11 @@
                                 <tr wire:key="{{ $item->id }}">
                                     @if ($item->status == false)
                                         <td>
-                                            <span class="text-danger p-1"><i class="fa fa-circle"></i></span>
+                                            <span class="text-danger p-1"><i class="fa fa-circle"></i>en cours</span>
                                         </td>
                                     @else
                                         <td>
-                                            <span class="text-success p-1"><i class="fa fa-circle"></i></span>
+                                            <span class="text-success p-1"><i class="fa fa-circle"></i>confirmer</span>
                                         </td>
                                     @endif
                                     <td>{{ $item->customer->name }}</td>
@@ -45,18 +45,18 @@
 
                                     <td>{{ $item->products_count }}</td>
                                     <td>
-                                        <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
-                                            class="btn btn-primary btn-sm " title="ajouter des produits"> <i
-                                                class="fa fa-plus" aria-hidden="true"></i></a>
-                                        <button type="button" wire:click="openConfirmModal({{ $item->id }})"
+                                        <a href="{{ route('invoice.create', ['id' => $item->id]) }}"
+                                            class="btn btn-primary btn-sm " title="imprimer"> <i
+                                                class="fa fa-print" aria-hidden="true"></i></a>
+                                        <button type="button" wire:click.prevent="confirm({{ $item->id }})"
                                             class="btn btn-success btn-sm " title="confirmer la commande"> <i
                                                 class="fa fa-check" aria-hidden="true"></i></button>
-                                        <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
+                                        {{-- <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
                                             class="btn btn-warning btn-sm " title="modifier la commande"> <i
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
                                         <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
                                             class="btn btn-primary btn-sm " title="voir les details"> <i
-                                                class="fa fa-eye" aria-hidden="true"></i></a>
+                                                class="fa fa-eye" aria-hidden="true"></i></a> --}}
 
                                         <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
                                             class="btn btn-danger btn-sm " title="supprimer la commande"> <i
