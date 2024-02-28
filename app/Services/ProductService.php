@@ -6,8 +6,10 @@ namespace App\Services;
 
 use App\Actions\Order\VerifyUserAction;
 use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ProductService
 {
@@ -18,13 +20,20 @@ class ProductService
     {
         $this->customer_id = (int) session()->get("customer_id");
     }
-    public function productByOrder(): Collection
+    public function productByOrder()
     {
 
-        return Order::where("customer_id", $this->customer_id)->where("status",false)->with("products")->get();
+        // return Order::where("customer_id", $this->customer_id)->where("status",false)->with("productsOrders")->leftJoin("order_products")->get();
+        return  DB::table("orders")->join("order_products", "orders.id", "=", "order_products.order_id")
+            ->join("products", "order_products.product_id", "=", "products.id")->where("orders.customer_id", $this->customer_id)->select("orders.*", "products.*")->get();
     }
 
-    public function storeProduct(string $name, string $color)
+    public function AllProducts()
+    {
+        return Product::latest()->get();
+    }
+
+    public function storeProduct(string $idProduct, string $color)
     {
 
         if ($this->verifyUserAction->UserExist() !== null) {
@@ -36,10 +45,10 @@ class ProductService
         }
 
         if ($this->orderId != null) {
-            Product::create(
+            OrderProduct::create(
                 [
-                    'name' => $name,
-                    'description' => $color,
+                    'product_id' => $idProduct,
+                    'color' => $color,
                     'order_id' => $this->orderId
                 ]
 

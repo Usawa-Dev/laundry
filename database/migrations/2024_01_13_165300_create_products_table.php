@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Product;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
+    protected array $products = ["jeans","drap", "shoes", "shockets", "shirt", "trouer", "bombels", "pullover", "tshirt", "blanket", "short", "underware" ];
     /**
      * Run the migrations.
      */
@@ -14,9 +16,14 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->text("description")->nullable();
             $table->timestamps();
+
+
         });
+
+        foreach ($this->products as $key => $value) {
+            Product::create(["name" => $value]);
+        }
     }
 
     /**

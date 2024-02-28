@@ -12,12 +12,12 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'description',
-        'order_id'
     ];
 
-    public function order() : BelongsTo {
-        return $this->belongsTo(Order::class);
+    public function productsOrders()
+    {
+        return $this->hasMany(OrderProduct::class);
     }
+
 
 }

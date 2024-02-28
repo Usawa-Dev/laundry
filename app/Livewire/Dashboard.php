@@ -14,14 +14,17 @@ class Dashboard extends Component
 
     public $productsDashboard;
     public $records;
-    public ?string $name;
-    public ?string $description;
+    public ?string $productId;
+    public ?string $color;
+
+    public $products;
 
     #[On('Initialised')]
     public function render(ProductService $productService)
     {
         $this->records = Customer::all();
         $this->productsDashboard = $productService->productByOrder();
+        $this->products = $productService->AllProducts();
         return view('livewire.dashboard');
     }
 
@@ -47,7 +50,7 @@ class Dashboard extends Component
     public function store(ProductService $productService)
     {
 
-        $productService->storeProduct($this->name, $this->description);
+        $productService->storeProduct($this->productId, $this->color);
 
         flash()->addSuccess('Article ajoute avec succes');
         $this->dispatch('Productstored');
@@ -57,12 +60,13 @@ class Dashboard extends Component
     public function orderInit(OrderBasketService $orderBasketService, int $customerId)
     {
         $orderBasketService->initBasket($customerId);
+        flash()->addSuccess('commande creer, fermer le modal');
         $this->dispatch('Initialized');
     }
 
     private function restore()
     {
-        $this->name = "";
-        $this->description = "";
+        $this->productId = "";
+        $this->color = "";
     }
 }

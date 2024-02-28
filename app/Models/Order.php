@@ -25,8 +25,8 @@ protected $casts = [
 
 
 
-    public function products(){
-        return $this->hasMany(Product::class);
+    public function productsOrders(){
+        return $this->hasMany(OrderProduct::class);
     }
 
     public function customer() : BelongsTo {

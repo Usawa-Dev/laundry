@@ -107,7 +107,7 @@
                     @if (session()->get('customer_id'))
                        @isset($productsDashboard[0])
                         <div>
-                            <a href="{{ route('invoice.create', ['id' => $productsDashboard[0]["id"]]) }}" class="btn btn-success text-white m-2">Imprimer<i class="fa fa-print p-2"
+                            <a href="{{ route('invoice.create', ['id' => $productsDashboard["id"]]) }}" class="btn btn-success text-white m-2">Imprimer<i class="fa fa-print p-2"
                                     aria-hidden="true"></i></a>
                             <a type="button" wire:click.prevent="confirm({{ $productsDashboard[0]->id }})" class="btn btn-danger text-white">Confirmer<i class="fas fa-file-pdf p-2"></i></a>
                         </div>
@@ -180,15 +180,24 @@
                 <div class="modal-body">
 
                     <form method="post" action="">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for=""></label>
                             <input type="text" wire:model="name" class="form-control" name="" id=""
                                 aria-describedby="helpId" value="">
                             <small id="helpId" class="form-text text-muted">nom de l'article</small>
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="my-select">selectionner un produit</label>
+                            <select id="my-select" class="form-control" wire:model="productId">
+                                <option selected> selectionner un produit</option>
+                                @foreach ($products as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for=""></label>
-                            <input type="text" wire:model="description" class="form-control" name="" id=""
+                            <input type="text" wire:model="color" class="form-control" name="" id=""
                                 aria-describedby="helpId" value="">
                             <small id="helpId" class="form-text text-muted">couleur</small>
                         </div>
