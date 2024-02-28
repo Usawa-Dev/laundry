@@ -50,7 +50,7 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="mb-4 col-xl-3 col-md-6">
-            +            <div class="py-2 shadow card border-left-info h-100">
+                       <div class="py-2 shadow card border-left-info h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-+
+
         <!-- Pending Requests Card Example -->
         <div class="mb-4 col-xl-3 col-md-6">
             <div class="py-2 shadow card border-left-warning h-100">
@@ -143,12 +143,12 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $product->name }}</td>
-                                                <td>{{ $product->color }}</td>
+                                                <td  class=" w-2"><a style="background-color:  {{ $product->color  }}" class=" w-5"> <i class="fa fa-product-hunt"></i></a></td>
 
-                                                <td>-n
-                                                    <a href=""></a>
+                                                <td>
 
-   +                                                 <button type="submit" wire:click =""
+
+                                                  <button type="submit" wire:click =""
                                                         class="btn btn-danger p1 text-white">X</button>
                                                 </td>
                                             </tr>
@@ -197,7 +197,7 @@
                         </div>
                         <div class="form-group">
                             <label for=""></label>
-                            <input type="text" wire:model="color" class="form-control" name="" id=""
+                            <input type="color" wire:model="color" class="form-control" name="" id=""
                                 aria-describedby="helpId" value="">
                             <small id="helpId" class="form-text text-muted">couleur</small>
                         </div>
