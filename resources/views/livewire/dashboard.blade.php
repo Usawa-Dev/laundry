@@ -50,7 +50,7 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="mb-4 col-xl-3 col-md-6">
-            <div class="py-2 shadow card border-left-info h-100">
+            +            <div class="py-2 shadow card border-left-info h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-
++
         <!-- Pending Requests Card Example -->
         <div class="mb-4 col-xl-3 col-md-6">
             <div class="py-2 shadow card border-left-warning h-100">
@@ -95,19 +95,19 @@
         </div>
     </div>
     <!-- Content Row -->
-    {{-- @dd($productsDashboard) --}}
+     {{-- @dd($productsDashboard)  --}}
     <div class="row">
 
         <!-- Area Chart -->
         <div class="col-xl-12 col-lg-12">
-            <div class="mb-4 shadow card">
+ +           <div class="mb-4 shadow card">
                 <!-- Card Header - Dropdown -->
                 <div class="flex-row py-3 card-header d-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary"></h6>
                     @if (session()->get('customer_id'))
                        @isset($productsDashboard[0])
                         <div>
-                            <a href="{{ route('invoice.create', ['id' => $productsDashboard["id"]]) }}" class="btn btn-success text-white m-2">Imprimer<i class="fa fa-print p-2"
+                            <a href="{{ route('invoice.create', ['id' => $productsDashboard[0]->order_id]) }}" class="btn btn-success text-white m-2">Imprimer<i class="fa fa-print p-2"
                                     aria-hidden="true"></i></a>
                             <a type="button" wire:click.prevent="confirm({{ $productsDashboard[0]->id }})" class="btn btn-danger text-white">Confirmer<i class="fas fa-file-pdf p-2"></i></a>
                         </div>
@@ -123,7 +123,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="table-responsive">
+  +                  <div class="table-responsive">
                         <table class="table table-bordered" id="" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -138,17 +138,17 @@
                                 @empty($productsDashboard)
                                     Aucunne donnee
                                 @else
-                                    @isset($productsDashboard[0]['products'])
-                                        @foreach ($productsDashboard[0]['products'] as $key => $product)
+                                    @isset($productsDashboard)
+                                        @foreach ($productsDashboard as $key => $product)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $product->name }}</td>
-                                                <td>{{ $product->description }}</td>
+                                                <td>{{ $product->color }}</td>
 
                                                 <td>-n
                                                     <a href=""></a>
 
-                                                    <button type="submit" wire:click =""
+   +                                                 <button type="submit" wire:click =""
                                                         class="btn btn-danger p1 text-white">X</button>
                                                 </td>
                                             </tr>
@@ -173,7 +173,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ajouter un article?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+    +                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>

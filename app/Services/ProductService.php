@@ -25,7 +25,7 @@ class ProductService
 
         // return Order::where("customer_id", $this->customer_id)->where("status",false)->with("productsOrders")->leftJoin("order_products")->get();
         return  DB::table("orders")->join("order_products", "orders.id", "=", "order_products.order_id")
-            ->join("products", "order_products.product_id", "=", "products.id")->where("orders.customer_id", $this->customer_id)->select("orders.*", "products.*")->get();
+            ->join("products", "order_products.product_id", "=", "products.id")->where("orders.customer_id", $this->customer_id)->select("orders.id as order_id", "products.*", "order_products.*")->get();
     }
 
     public function AllProducts()
