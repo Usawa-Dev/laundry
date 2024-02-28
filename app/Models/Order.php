@@ -33,5 +33,5 @@ protected $casts = [
         return $this->belongsTo(Customer::class);
     }
 
-    
+
 }

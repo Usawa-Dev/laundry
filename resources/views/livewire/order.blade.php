@@ -26,6 +26,7 @@
                     </thead>
                     </tfoot>
                     <tbody>
+                       
                         @empty($orders)
                             Aucunne donnee
                         @else
@@ -43,7 +44,7 @@
                                     <td>{{ $item->customer->name }}</td>
                                     <td>{{ $item->customer->room_name }}</td>
 
-                                    <td>{{ $item->products_count }}</td>
+                                    <td>{{ $item->products_orders_count }}</td>
                                     <td>
                                         <a href="{{ route('invoice.create', ['id' => $item->id]) }}"
                                             class="btn btn-primary btn-sm " title="imprimer"> <i
@@ -56,7 +57,7 @@
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
                                         {{-- <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
                                             class="btn btn-primary btn-sm " title="voir les details"> <i
-                                                class="fa fa-eye" aria-hidden="true"></i></a> --}} 
+                                                class="fa fa-eye" aria-hidden="true"></i></a> --}}
 
                                         <a href="{{ route('admin.product.create', ['id' => $item->id]) }}"
                                             class="btn btn-danger btn-sm " title="supprimer la commande"> <i

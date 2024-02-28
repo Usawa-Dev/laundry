@@ -78,14 +78,15 @@
 </style>
 <body>
 
+
 <div class="head-title">
     <h1 class="text-center m-0 p-0">IFS</h1>
 </div>
 <div class="add-detail mt-10">
     <div class="w-50 float-left mt-10">
         <p class="m-0 pt-5 text-bold w-100">Invoice Id - <span class="gray-color">#1</span></p>
-        <p class="m-0 pt-5 text-bold w-100">Order Id - <span class="gray-color">{{ $data['code']}}</span></p>
-        <p class="m-0 pt-5 text-bold w-100">Order Date - <span class="gray-color">{{ $data["created_at"] }}</span></p>
+        <p class="m-0 pt-5 text-bold w-100">Order Id - <span class="gray-color">{{ $data[0]->code}}</span></p>
+        <p class="m-0 pt-5 text-bold w-100">Order Date - <span class="gray-color">{{ $data[0]->created_at }}</span></p>
     </div>
     <div class="w-50 float-left logo mt-10">
         {{-- <img src="{{ asset("téléchargement.png") }}" alt="Logo"> --}}
@@ -109,8 +110,8 @@
             </td>
             <td>
                 <div class="box-text">
-                    <p> {{ $data["customer"]->name }}</p>
-                    <p>chambre {{ $data["customer"]->room_name }},</p>
+                    <p> {{ $data[0]->name }}</p>
+                    <p>chambre {{ $data[0]->room_name }},</p>
                     <p>Rdc</p>
                     <p>Contact: 1-206-266-1000</p>
                 </div>
@@ -130,10 +131,10 @@
             <th class="w-50">Tax Amount</th>
             <th class="w-50">Grand Total</th> --}}
         </tr>
-        @foreach ($data["products"] as $item)
+        @foreach ($data as $item)
                     <tr align="center">
-            <td>{{ $item->name }}</td>
-            <td>{{ $item->description }}</td>
+            <td>{{ $item->pname }}</td>
+            <td><a href="" style="background-color: {{ $item->color }}"><i class="fa fa-invision"></i></a></td>
             {{-- <td>$500.2</td>
             <td>3</td>
             <td>$1500</td>
@@ -148,7 +149,7 @@
                         <p> Total</p>
                     </div>
                     <div class="total-right w-15 float-left text-bold" align="right">
-                        <p>{{ count($data["products"]) }}</p>
+                        <p></p>
                     </div>
                     <div style="clear: both;"></div>
                 </div>

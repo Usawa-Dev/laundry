@@ -14,10 +14,10 @@ class InvoiceController extends Controller
     }
     public function create(int $order)
     {
-        dd
+
 
         $pdf = PDF::loadView('invoice',  $data = ["data" => $this->orderService->invoice($order)]);
 
-        return $pdf->stream($data["data"]["customer"]["name"], '.pdf');
+        return $pdf->stream($data['data'][0]->name, '.pdf');
     }
 }

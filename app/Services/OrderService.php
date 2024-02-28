@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\OrderProduct;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,12 +16,12 @@ class OrderService
 
     public function getAll(): Collection
     {
-        return Order::latest()->with("customer")->withCount("products")->get();
+        return Order::latest()->with("customer")->withCount("productsOrders")->get();
     }
 
     public function ordersByUser(): Collection
     {
-        return Order::whereUserId(Auth::user()->id)->latest()->withCount("products")->get();
+        return Order::whereUserId(Auth::user()->id)->latest()->withCount("productsOrders")->get();
     }
 
     public function store()
@@ -51,7 +52,15 @@ class OrderService
 
     public function invoice(int $orderId)
     {
-        return  DB::table("orders")->join("order_products", "orders.id", "=", "order_products.order_id")
-            ->join("products", "order_products.product_id", "=", "products.id")->join("customers", "orders.customer_id", "customers.id")->where("orders.id", $orderId)->select("orders.*", "products.*", "order_products.*", "customers.*")->get();
+
+        // return  DB::table("orders")->where("id", $orderId)->select("orders.*")->get()->dd();
+
+        return  DB::table("orders")
+        ->join("order_products", "orders.id", "=", "order_products.order_id")
+            ->join("products", "order_products.product_id", "=", "products.id")
+            ->join("customers", "orders.customer_id", "customers.id")
+            ->where("orders.id", $orderId)
+            ->select("orders.*", "products.name as pname", "order_products.*", "customers.*", )
+            ->get();
     }
 }
