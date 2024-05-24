@@ -37,6 +37,7 @@ class Dashboard extends Component
 
     public function confirm(int $orderId)
     {
+        
         $order = Order::findOrFail($orderId);
         $order->update([
             "status" => 1
@@ -64,7 +65,7 @@ class Dashboard extends Component
         $this->dispatch('Initialized');
     }
 
-    private function restore()  
+    private function restore()
     {
         $this->productId = "";
         $this->color = "";
