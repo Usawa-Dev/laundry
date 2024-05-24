@@ -26,7 +26,7 @@
                     </thead>
                     </tfoot>
                     <tbody>
-                       
+
                         @empty($orders)
                             Aucunne donnee
                         @else
@@ -38,7 +38,7 @@
                                         </td>
                                     @else
                                         <td>
-                                            <span class="text-success p-1"><i class="fa fa-circle"></i>confirmer</span>
+                                            <span class="text-success p-1"><i class="fa fa-circle"></i>confirmé</span>
                                         </td>
                                     @endif
                                     <td>{{ $item->customer->name }}</td>

@@ -94,7 +94,28 @@
     </div>
     <!-- Content Row -->
     {{-- @dd($productsDashboard)  --}}
-    <div class="row">
+    <div class="card text-start mb-2">
+        <div class="row">
+            <div class="col-sm-6 col-6 ">
+                <button class="btn btn-primary text-white ml-4 mt-2 mb-2" type="button" data-toggle="modal" data-target="#customer"><i class="fa fa-plus "></i> client</button>
+
+
+
+
+            </div>
+            <div class="col-sm-6 col-6">
+                <div class="dropdown no-arrow">
+                    <a href="#" role="button" data-toggle="modal" data-target="#product">
+                        <button class="btn btn-primary mt-2 mb-2 ml-5 mr-2 text-white"><i class="fa fa-plus" aria-hidden="true"></i> produit</button>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
 
         <!-- Area Chart -->
         <div class="col-xl-12 col-lg-12">
@@ -113,10 +134,10 @@
                     @endisset
                     @endif
                     <div class="dropdown no-arrow">
-                        <a href="#" role="button" data-toggle="modal" data-target="#product">
+                        {{-- <a href="#" role="button" data-toggle="modal" data-target="#product">
                             <button class="btn btn-primary text-white"><i class="fa fa-plus" aria-hidden="true"></i>
                                 ajouter un produit</button>
-                        </a>
+                        </a> --}}
 
                     </div>
                 </div>
