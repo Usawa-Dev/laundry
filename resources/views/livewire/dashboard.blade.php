@@ -103,7 +103,7 @@
 
 
             </div>
-            <div class="col-sm-6 col-6">
+            <div class="col-sm-6 col-6 text-end">
                 <div class="dropdown no-arrow">
                     <a href="#" role="button" data-toggle="modal" data-target="#product">
                         <button class="btn btn-primary mt-2 mb-2 ml-5 mr-2 text-white"><i class="fa fa-plus" aria-hidden="true"></i> produit</button>
@@ -168,7 +168,7 @@
                                     <td>
 
 
-                                        <button type="submit" wire:click="" class="btn btn-danger p1 text-white">X</button>
+                                        <button type="submit" wire:click="" class="btn btn-danger p1 text-white">x</button>
                                     </td>
                                 </tr>
                                 @endforeach

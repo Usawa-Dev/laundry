@@ -28,14 +28,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        User::create([
-            'name' => "jocelin kisenga",
-            'email' => "kisenga@gmail.com",
-            'password' => Hash::make('jocelin kisenga'),
-            'permis_status' => true,
-            'phone' => "0991161449",
-            'role_id' => 1
-        ]);
+
     }
 
     /**

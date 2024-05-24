@@ -18,9 +18,16 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
-        return view('auth.register');
+
+        $users = User::count();
+        if ($users > 0) {
+            
+            return redirect(route('login'));
+        } else {
+            return view("auth.register");
+        }
     }
 
     /**
@@ -30,18 +37,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', ],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required',],
         ]);
- 
-      
+
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'permis_status' => true,
+            'role_id' => 1
         ]);
 
         event(new Registered($user));

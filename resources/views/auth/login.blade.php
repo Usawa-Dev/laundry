@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Connexion</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,15 +48,20 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Entrer votre email...">
                                         </div>
+                                        @error("email")
+                                            <span class="text-danger mb-1">Email incorrect</span>
+
+                                        @enderror
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="password"
                                                 id="exampleInputPassword" placeholder="votre mot de passe">
                                         </div>
+                                        @error("password")
+                                            <span class="text-danger mb-1">Mot de passe incorrect</span>
+                                        @enderror
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                              
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
