@@ -37,7 +37,7 @@
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
                                 Commandes Livres</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countConfirmedOrders() }}</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{  \App\Services\CountableDataService::countConfirmedOrders() }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-dollar-sign fa-2x"></i>
@@ -57,7 +57,8 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="mb-0 mr-3 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countUser() }}</div>
+                                    <div class="mb-0 mr-3 text-gray-800 h5 font-weight-bold">{{ \App\Services\CountableDataService::countUser() }}</div>
+
                                 </div>
                                 <div class="col">
                                     <div class="mr-2 progress progress-sm">
@@ -82,7 +83,8 @@
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-warning text-uppercase">
                                 Nombres de clients</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countClients() }}</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ \App\Services\CountableDataService::countClients() }}</div>
+
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-comments fa-2x"></i>
