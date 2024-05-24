@@ -19,7 +19,8 @@
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-primary text-uppercase">
                                 Commandes en cours</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ CountableDataService::countUnconfirmedOrders() }}</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ \App\Services\CountableDataService::countUnconfirmedOrders() }}</div>
+
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-calendar fa-2x"></i>
