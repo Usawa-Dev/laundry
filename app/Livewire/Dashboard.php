@@ -19,7 +19,7 @@ class Dashboard extends Component
     public ?string $color;
 
     public $products;
-    public $counPendingOrders;
+    public $countPendingOrders;
     public $countPaidOrders;
     public $countUsers;
     public $countClients;
@@ -28,7 +28,7 @@ class Dashboard extends Component
     #[On('Initialised')]
     public function render(ProductService $productService)
     {
-        $this->counPendingOrders = CountableDataservice::countUnconfirmedOrders();
+        $this->countPendingOrders = CountableDataservice::countUnconfirmedOrders();
         $this->countPaidOrders = CountableDataservice::countConfirmedOrders();
         $this->countClients = CountableDataservice::countClients();
         $this->countUsers  = CountableDataservice::countUser();
