@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Order;
 use Livewire\Component;
 use App\Models\Customer;
+use App\Services\CountableDataservice;
 use Livewire\Attributes\On;
 use App\Services\ProductService;
 use App\Services\OrderBasketService;
@@ -18,10 +19,19 @@ class Dashboard extends Component
     public ?string $color;
 
     public $products;
+    public $counPendingOrders;
+    public $countPaidOrders;
+    public $countUsers;
+    public $countClients;
+
 
     #[On('Initialised')]
     public function render(ProductService $productService)
     {
+        $this->counPendingOrders = CountableDataservice::countUnconfirmedOrders();
+        $this->countPaidOrders = CountableDataservice::countConfirmedOrders();
+        $this->countClients = CountableDataservice::countClients();
+        $this->countUsers  = CountableDataservice::countUser();
         $this->records = Customer::all();
         $this->productsDashboard = $productService->productByOrder();
         $this->products = $productService->AllProducts();
@@ -37,7 +47,7 @@ class Dashboard extends Component
 
     public function confirm(int $orderId)
     {
-        
+
         $order = Order::findOrFail($orderId);
         $order->update([
             "status" => 1
